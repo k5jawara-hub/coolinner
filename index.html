@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Gotchange's Gallery</title>
-  <!-- Font & ikon (elegan, simpel) -->
+  <!-- Font & ikon -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
     }
 
     body {
-      background: #0b0b0b; /* hitam pekat */
+      background: #0b0b0b;
       color: #eaeaea;
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
@@ -26,27 +26,26 @@
       padding: 2rem 1rem 3rem;
     }
 
-    /* wadah utama – estetik hitam putih dengan sentuhan halus */
     .gallery-wrapper {
-      max-width: 780px;
+      max-width: 900px;
       width: 100%;
       background: #121212;
       border-radius: 48px 48px 32px 32px;
       padding: 2rem 1.5rem 2.5rem;
       box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.04);
-      backdrop-filter: blur(2px);
       transition: all 0.2s;
     }
 
-    /* header – simpel & elegan */
+    /* Header */
     .header {
       display: flex;
       align-items: baseline;
       justify-content: space-between;
       border-bottom: 1px solid rgba(255,255,255,0.06);
       padding-bottom: 1.2rem;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .header h1 {
@@ -73,27 +72,59 @@
       border: 1px solid rgba(255,255,255,0.04);
     }
 
-    /* area unggah – hanya terlihat oleh "admin" (anda) */
+    /* Stats */
+    .stats {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding: 0.8rem 1.2rem;
+      background: #1a1a1a;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.04);
+      font-size: 0.8rem;
+      color: #999;
+      flex-wrap: wrap;
+    }
+    .stats span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .stats i {
+      color: #555;
+      width: 16px;
+    }
+
+    /* Upload Section */
     .upload-section {
       background: #1a1a1a;
       border-radius: 28px;
       padding: 1.6rem 1.5rem;
-      margin-bottom: 2.5rem;
-      border: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 2rem;
+      border: 2px dashed rgba(255,255,255,0.06);
       box-shadow: inset 0 2px 6px rgba(0,0,0,0.6);
+      transition: all 0.3s;
+      position: relative;
+    }
+    .upload-section.dragover {
+      border-color: #666;
+      background: #1f1f1f;
+      transform: scale(1.01);
+    }
+
+    .upload-row {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 0.8rem 1rem;
-      transition: opacity 0.2s;
     }
 
-    .upload-section .label-upload {
+    .label-upload {
       display: flex;
       align-items: center;
       gap: 6px;
       background: #232323;
-      padding: 0.4rem 1.2rem 0.4rem 1rem;
+      padding: 0.5rem 1.2rem 0.5rem 1rem;
       border-radius: 40px;
       border: 1px solid #3a3a3a;
       color: #ccc;
@@ -103,11 +134,11 @@
       transition: 0.2s;
       flex: 1 1 auto;
     }
-    .upload-section .label-upload i {
+    .label-upload i {
       color: #aaa;
       font-size: 1rem;
     }
-    .upload-section .label-upload:hover {
+    .label-upload:hover {
       background: #2c2c2c;
       border-color: #5a5a5a;
     }
@@ -130,7 +161,6 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      flex: 0 1 auto;
       background: #1f1f1f;
     }
     .upload-btn i {
@@ -145,8 +175,42 @@
     .upload-btn:active {
       transform: scale(0.96);
     }
+    .upload-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
-    /* pesan status */
+    /* Progress Bar */
+    .progress-container {
+      width: 100%;
+      margin-top: 0.8rem;
+      display: none;
+    }
+    .progress-container.active {
+      display: block;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #666, #aaa);
+      width: 0%;
+      transition: width 0.3s;
+      border-radius: 10px;
+    }
+    .progress-text {
+      font-size: 0.7rem;
+      color: #777;
+      margin-top: 4px;
+      display: flex;
+      justify-content: space-between;
+    }
+
     .status-msg {
       font-size: 0.7rem;
       color: #8a8a8a;
@@ -157,10 +221,62 @@
       padding-top: 0.6rem;
     }
 
-    /* galeri – grid elegan */
+    /* Toolbar */
+    .toolbar {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .toolbar input[type="text"] {
+      flex: 1;
+      min-width: 150px;
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #eaeaea;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      transition: 0.2s;
+    }
+    .toolbar input[type="text"]:focus {
+      outline: none;
+      border-color: #555;
+      background: #1f1f1f;
+    }
+    .toolbar input[type="text"]::placeholder {
+      color: #555;
+    }
+    .toolbar .action-btn {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      color: #aaa;
+      padding: 0.5rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Inter', sans-serif;
+    }
+    .toolbar .action-btn:hover {
+      background: #252525;
+      border-color: #444;
+      color: #fff;
+    }
+    .toolbar .action-btn.danger:hover {
+      border-color: #8a3a3a;
+      color: #ff6b6b;
+    }
+
+    /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
       gap: 1.2rem;
       margin-top: 0.2rem;
     }
@@ -178,10 +294,12 @@
       justify-content: center;
       position: relative;
       background: #141414;
+      cursor: pointer;
     }
     .gallery-item:hover {
       border-color: #3a3a3a;
-      transform: scale(1.01);
+      transform: scale(1.02);
+      z-index: 2;
     }
 
     .gallery-item img,
@@ -193,19 +311,68 @@
       background: #0a0a0a;
     }
 
-    .gallery-item .media-placeholder {
-      color: #3a3a3a;
-      font-size: 0.7rem;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      font-weight: 300;
+    .gallery-item video {
+      background: #000;
     }
 
-    /* fallback jika kosong */
+    /* Delete Button */
+    .delete-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #ff6b6b;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      backdrop-filter: blur(4px);
+      z-index: 3;
+    }
+    .gallery-item:hover .delete-btn {
+      opacity: 1;
+    }
+    .delete-btn:hover {
+      background: rgba(200,0,0,0.3);
+      border-color: #ff6b6b;
+      transform: scale(1.1);
+    }
+
+    /* Item type badge */
+    .item-badge {
+      position: absolute;
+      bottom: 8px;
+      left: 8px;
+      background: rgba(0,0,0,0.7);
+      color: #aaa;
+      font-size: 0.6rem;
+      padding: 2px 8px;
+      border-radius: 20px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.05);
+      opacity: 0;
+      transition: 0.2s;
+    }
+    .gallery-item:hover .item-badge {
+      opacity: 1;
+    }
+    .item-badge i {
+      margin-right: 4px;
+      font-size: 0.5rem;
+    }
+
+    /* Empty state */
     .empty-gallery {
       grid-column: 1 / -1;
       text-align: center;
-      padding: 3.5rem 1rem;
+      padding: 4rem 1rem;
       color: #4a4a4a;
       font-weight: 300;
       letter-spacing: 0.5px;
@@ -214,9 +381,9 @@
       background: #141414;
     }
     .empty-gallery i {
-      font-size: 2.2rem;
+      font-size: 3rem;
       color: #2e2e2e;
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
       display: block;
     }
     .empty-gallery span {
@@ -225,7 +392,102 @@
       color: #5a5a5a;
     }
 
-    /* footer simpel */
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.3s;
+    }
+    .lightbox.active {
+      display: flex;
+    }
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    }
+    .lightbox-content img,
+    .lightbox-content video {
+      max-width: 100%;
+      max-height: 85vh;
+      display: block;
+      border-radius: 16px;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.6);
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: 0.2s;
+      z-index: 1001;
+      font-family: 'Inter', sans-serif;
+    }
+    .lightbox-close:hover {
+      color: #fff;
+      transform: rotate(90deg);
+    }
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.6);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .lightbox-nav:hover {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    .lightbox-nav.prev {
+      left: 20px;
+    }
+    .lightbox-nav.next {
+      right: 20px;
+    }
+    .lightbox-counter {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.4);
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.5);
+      padding: 0.4rem 1.2rem;
+      border-radius: 30px;
+      backdrop-filter: blur(4px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Footer */
     .footer-note {
       margin-top: 2.5rem;
       text-align: center;
@@ -241,20 +503,19 @@
       margin: 0 4px;
     }
 
-    /* responsif */
-    @media (max-width: 500px) {
+    /* Responsive */
+    @media (max-width: 600px) {
       .gallery-wrapper {
         padding: 1.2rem 0.8rem 1.8rem;
         border-radius: 32px;
       }
       .header h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
       }
-      .upload-section {
+      .upload-row {
         flex-direction: column;
         align-items: stretch;
         gap: 0.6rem;
-        padding: 1.2rem;
       }
       .upload-btn {
         justify-content: center;
@@ -263,62 +524,141 @@
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
         gap: 0.8rem;
       }
+      .toolbar {
+        flex-direction: column;
+      }
+      .toolbar input[type="text"] {
+        width: 100%;
+      }
+      .stats {
+        font-size: 0.7rem;
+        gap: 0.8rem;
+      }
+      .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+      }
+      .lightbox-nav.prev {
+        left: 10px;
+      }
+      .lightbox-nav.next {
+        right: 10px;
+      }
+      .lightbox-close {
+        top: 15px;
+        right: 20px;
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
 <div class="gallery-wrapper">
   
-  <!-- header elegan -->
+  <!-- Header -->
   <div class="header">
     <h1>gotchange’s <span>gallery</span></h1>
     <div class="sub"><i class="far fa-eye" style="margin-right: 5px;"></i> public</div>
   </div>
 
-  <!-- area upload (hanya untuk Anda) 
-       menggunakan atribut "hidden" secara visual, 
-       tapi tetap di-render agar fungsional. 
-       Tapi kita ingin "hanya aku yang bisa upload" 
-       => kita beri flag sederhana: kita tampilkan, 
-       tapi secara UX hanya pemilik yang tahu caranya. 
-       Namun karena ini adalah kode private, kita beri 
-       akses penuh (tidak ada login). 
-       Konsep: hanya aku yang bisa menambah, 
-       tapi semua orang lihat. -->
-  <div class="upload-section" id="uploadSection">
-    <label for="fileInput" class="label-upload">
-      <i class="fas fa-plus-circle"></i> Pilih foto/video
-    </label>
-    <input type="file" id="fileInput" accept="image/*,video/*" multiple>
-    <button class="upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> Unggah</button>
-    <div class="status-msg" id="statusMsg"><i class="far fa-circle" style="margin-right: 4px;"></i> hanya Anda yang dapat menambahkan</div>
+  <!-- Stats -->
+  <div class="stats" id="statsContainer">
+    <span><i class="fas fa-images"></i> <span id="totalItems">0</span> item</span>
+    <span><i class="fas fa-hdd"></i> <span id="totalSize">0 KB</span></span>
+    <span><i class="fas fa-file-image"></i> <span id="imageCount">0</span> gambar</span>
+    <span><i class="fas fa-file-video"></i> <span id="videoCount">0</span> video</span>
   </div>
 
-  <!-- GALERI -->
-  <div class="gallery-grid" id="galleryGrid">
-    <!-- item akan di-render oleh javascript -->
-    <!-- jika kosong, tampilkan pesan elegan -->
+  <!-- Upload Section with Drag & Drop -->
+  <div class="upload-section" id="uploadSection">
+    <div class="upload-row">
+      <label for="fileInput" class="label-upload">
+        <i class="fas fa-plus-circle"></i> Pilih foto/video
+      </label>
+      <input type="file" id="fileInput" accept="image/*,video/*" multiple>
+      <button class="upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> Unggah</button>
+      <button class="upload-btn" id="clearAllBtn" style="border-color:#4a2a2a; color:#aa6a6a;"><i class="fas fa-trash"></i> Hapus Semua</button>
+    </div>
+    
+    <!-- Progress Bar -->
+    <div class="progress-container" id="progressContainer">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progressLabel">Mengunggah...</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+    
+    <div class="status-msg" id="statusMsg"><i class="far fa-circle" style="margin-right: 4px;"></i> Drag & drop file di sini, atau klik pilih file</div>
   </div>
+
+  <!-- Toolbar -->
+  <div class="toolbar">
+    <input type="text" id="searchInput" placeholder="🔍 Cari file...">
+    <button class="action-btn" id="exportBtn"><i class="fas fa-download"></i> Backup</button>
+    <button class="action-btn" id="importBtn"><i class="fas fa-upload"></i> Restore</button>
+    <input type="file" id="importFileInput" accept=".json" style="display:none;">
+  </div>
+
+  <!-- Gallery -->
+  <div class="gallery-grid" id="galleryGrid"></div>
 
   <div class="footer-note">
     <i class="fas fa-camera-retro"></i>  captured · monochrome  <i class="fas fa-dot-circle" style="margin-left: 8px;"></i>
   </div>
 </div>
 
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose">✕</button>
+  <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+  <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+  <div class="lightbox-content" id="lightboxContent"></div>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
 <script>
   (function() {
     "use strict";
 
-    // ---- ambil elemen ----
+    // ---- Elements ----
     const galleryGrid = document.getElementById('galleryGrid');
     const fileInput = document.getElementById('fileInput');
     const uploadBtn = document.getElementById('uploadBtn');
+    const clearAllBtn = document.getElementById('clearAllBtn');
     const statusMsg = document.getElementById('statusMsg');
+    const uploadSection = document.getElementById('uploadSection');
+    const progressContainer = document.getElementById('progressContainer');
+    const progressFill = document.getElementById('progressFill');
+    const progressLabel = document.getElementById('progressLabel');
+    const progressPercent = document.getElementById('progressPercent');
+    const searchInput = document.getElementById('searchInput');
+    const exportBtn = document.getElementById('exportBtn');
+    const importBtn = document.getElementById('importBtn');
+    const importFileInput = document.getElementById('importFileInput');
+    const statsContainer = document.getElementById('statsContainer');
 
-    // ---- storage key ----
+    // Lightbox elements
+    const lightbox = document.getElementById('lightbox');
+    const lightboxContent = document.getElementById('lightboxContent');
+    const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxPrev = document.getElementById('lightboxPrev');
+    const lightboxNext = document.getElementById('lightboxNext');
+    const lightboxCounter = document.getElementById('lightboxCounter');
+
+    // ---- Constants ----
     const STORAGE_KEY = 'gotchange_gallery_media';
+    const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
+    const MAX_TOTAL_SIZE = 10 * 1024 * 1024; // 10MB
+    const MAX_ITEMS = 200;
 
-    // ---- muat data dari localStorage ----
+    let currentLightboxIndex = 0;
+    let lightboxItems = [];
+
+    // ---- Data functions ----
     function loadMediaItems() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -331,176 +671,448 @@
       }
     }
 
-    // ---- simpan ke localStorage ----
     function saveMediaItems(items) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     }
 
-    // ---- render galeri ----
-    function renderGallery() {
+    function getTotalSize(items) {
+      let total = 0;
+      items.forEach(item => {
+        if (item.size) total += item.size;
+        else if (item.data) {
+          // Approximate size from base64
+          const size = Math.round((item.data.length * 3) / 4);
+          total += size;
+        }
+      });
+      return total;
+    }
+
+    function formatSize(bytes) {
+      if (bytes < 1024) return bytes + ' B';
+      if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    // ---- Render functions ----
+    function renderGallery(filter = '') {
       const items = loadMediaItems();
+      const searchTerm = filter.toLowerCase().trim();
+      
+      // Filter items
+      let filteredItems = items;
+      if (searchTerm) {
+        filteredItems = items.filter((item, index) => {
+          const name = item.name || `item-${index}`;
+          return name.toLowerCase().includes(searchTerm);
+        });
+      }
+
       galleryGrid.innerHTML = '';
 
-      if (items.length === 0) {
-        // tampilkan pesan kosong yang elegan
+      if (filteredItems.length === 0) {
         const emptyDiv = document.createElement('div');
         emptyDiv.className = 'empty-gallery';
+        const icon = items.length === 0 ? 'fa-images' : 'fa-search';
+        const msg = items.length === 0 ? 'belum ada karya' : 'tidak ditemukan';
         emptyDiv.innerHTML = `
-          <i class="fas fa-images"></i>
-          <span>belum ada karya</span>
-          <span style="font-size:0.7rem; margin-top:6px; color:#3e3e3e;">— unggah foto atau video —</span>
+          <i class="fas ${icon}"></i>
+          <span>${msg}</span>
+          <span style="font-size:0.7rem; margin-top:6px; color:#3e3e3e;">${items.length === 0 ? '— unggah foto atau video —' : '— coba kata kunci lain —'}</span>
         `;
         galleryGrid.appendChild(emptyDiv);
+        updateStats(items);
         return;
       }
 
-      // render setiap item
-      items.forEach((item, index) => {
+      // Store filtered items for lightbox
+      lightboxItems = filteredItems;
+
+      filteredItems.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'gallery-item';
-        // gunakan data URL yang disimpan (string)
+        div.dataset.index = index;
+
+        // Media content
         if (item.type && item.type.startsWith('video/')) {
           const video = document.createElement('video');
           video.src = item.data;
-          video.controls = true;
           video.muted = true;
           video.setAttribute('playsinline', '');
           video.setAttribute('preload', 'metadata');
-          // biarkan user mengontrol play
           div.appendChild(video);
         } else if (item.type && item.type.startsWith('image/')) {
           const img = document.createElement('img');
           img.src = item.data;
-          img.alt = 'gallery item';
+          img.alt = item.name || 'gallery item';
           img.loading = 'lazy';
           div.appendChild(img);
         } else {
-          // fallback
           const placeholder = document.createElement('div');
           placeholder.className = 'media-placeholder';
           placeholder.textContent = '📎';
           div.appendChild(placeholder);
         }
+
+        // Badge
+        const badge = document.createElement('div');
+        badge.className = 'item-badge';
+        const isVideo = item.type && item.type.startsWith('video/');
+        badge.innerHTML = `<i class="fas ${isVideo ? 'fa-video' : 'fa-image'}"></i> ${isVideo ? 'Video' : 'Foto'}`;
+        div.appendChild(badge);
+
+        // Delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+        deleteBtn.title = 'Hapus item ini';
+        deleteBtn.onclick = (e) => {
+          e.stopPropagation();
+          deleteItem(index);
+        };
+        div.appendChild(deleteBtn);
+
+        // Click to open lightbox
+        div.addEventListener('click', (e) => {
+          if (e.target.closest('.delete-btn')) return;
+          openLightbox(index);
+        });
+
         galleryGrid.appendChild(div);
       });
+
+      updateStats(items);
     }
 
-    // ---- fungsi unggah (hanya "aku" yang bisa menambah) ----
+    function updateStats(items) {
+      const total = items.length;
+      const images = items.filter(i => i.type && i.type.startsWith('image/')).length;
+      const videos = items.filter(i => i.type && i.type.startsWith('video/')).length;
+      const size = getTotalSize(items);
+
+      document.getElementById('totalItems').textContent = total;
+      document.getElementById('imageCount').textContent = images;
+      document.getElementById('videoCount').textContent = videos;
+      document.getElementById('totalSize').textContent = formatSize(size);
+    }
+
+    // ---- Delete ----
+    function deleteItem(index) {
+      const items = loadMediaItems();
+      if (index < 0 || index >= items.length) return;
+      
+      const item = items[index];
+      const confirmMsg = `Hapus "${item.name || 'item-' + index}"?`;
+      if (!confirm(confirmMsg)) return;
+
+      items.splice(index, 1);
+      saveMediaItems(items);
+      renderGallery(searchInput.value);
+      statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> 1 item dihapus`;
+    }
+
+    function clearAllItems() {
+      const items = loadMediaItems();
+      if (items.length === 0) {
+        statusMsg.innerHTML = '<i class="fas fa-info-circle" style="color:#777;"></i> Galeri sudah kosong';
+        return;
+      }
+      if (!confirm(`Hapus semua ${items.length} item?`)) return;
+      saveMediaItems([]);
+      renderGallery(searchInput.value);
+      statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> Semua item dihapus`;
+    }
+
+    // ---- Lightbox ----
+    function openLightbox(index) {
+      if (lightboxItems.length === 0) return;
+      currentLightboxIndex = index;
+      showLightboxItem(index);
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+      const video = lightboxContent.querySelector('video');
+      if (video) video.pause();
+    }
+
+    function showLightboxItem(index) {
+      const item = lightboxItems[index];
+      if (!item) return;
+
+      lightboxContent.innerHTML = '';
+      
+      if (item.type && item.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.src = item.data;
+        video.controls = true;
+        video.autoplay = true;
+        video.setAttribute('playsinline', '');
+        video.style.maxWidth = '100%';
+        video.style.maxHeight = '85vh';
+        lightboxContent.appendChild(video);
+      } else {
+        const img = document.createElement('img');
+        img.src = item.data;
+        img.alt = item.name || 'gallery item';
+        lightboxContent.appendChild(img);
+      }
+
+      lightboxCounter.textContent = `${index + 1} / ${lightboxItems.length}`;
+      currentLightboxIndex = index;
+    }
+
+    function navigateLightbox(direction) {
+      if (lightboxItems.length === 0) return;
+      let newIndex = currentLightboxIndex + direction;
+      if (newIndex < 0) newIndex = lightboxItems.length - 1;
+      if (newIndex >= lightboxItems.length) newIndex = 0;
+      showLightboxItem(newIndex);
+    }
+
+    // ---- Upload with progress ----
     function handleUpload() {
       const files = fileInput.files;
       if (!files || files.length === 0) {
-        statusMsg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#777;"></i> pilih file terlebih dahulu';
+        statusMsg.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#777;"></i> Pilih file terlebih dahulu';
         return;
       }
 
-      // batasi ukuran total agar tidak overload localStorage (maks ~5-10MB disarankan)
-      // kita akan filter file > 2MB per file, dan total max 8MB
-      const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
-      const MAX_TOTAL_SIZE = 8 * 1024 * 1024; // 8MB
+      const items = loadMediaItems();
+      
+      // Check max items
+      if (items.length + files.length > MAX_ITEMS) {
+        statusMsg.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b0a070;"></i> Maksimal ${MAX_ITEMS} item`;
+        return;
+      }
 
-      let totalSize = 0;
+      let totalSize = getTotalSize(items);
       const validFiles = [];
+
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (file.size > MAX_FILE_SIZE) {
-          statusMsg.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b0a070;"></i> file "${file.name}" > 2MB, lewati`;
+          statusMsg.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b0a070;"></i> "${file.name}" > 2MB, dilewati`;
           continue;
         }
-        totalSize += file.size;
-        if (totalSize > MAX_TOTAL_SIZE) {
-          statusMsg.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b0a070;"></i> total ukuran melebihi 8MB, hentikan`;
+        if (totalSize + file.size > MAX_TOTAL_SIZE) {
+          statusMsg.innerHTML = `<i class="fas fa-exclamation-triangle" style="color:#b0a070;"></i> Total ukuran melebihi 10MB, hentikan`;
           return;
         }
+        totalSize += file.size;
         validFiles.push(file);
       }
 
       if (validFiles.length === 0) {
-        statusMsg.innerHTML = '<i class="fas fa-times-circle" style="color:#777;"></i> tidak ada file valid';
+        statusMsg.innerHTML = '<i class="fas fa-times-circle" style="color:#777;"></i> Tidak ada file valid';
         return;
       }
 
-      // baca file sebagai data URL
-      const readers = [];
-      let loadedCount = 0;
-      const mediaItems = loadMediaItems(); // ambil existing
+      // Show progress
+      progressContainer.classList.add('active');
+      uploadBtn.disabled = true;
+      let loaded = 0;
+      const total = validFiles.length;
 
       validFiles.forEach((file, idx) => {
         const reader = new FileReader();
-        readers.push(reader);
         reader.onload = function(e) {
           const dataUrl = e.target.result;
-          // simpan object { type: file.type, data: dataUrl }
-          mediaItems.push({
+          items.push({
             type: file.type,
             data: dataUrl,
-            // tambahkan timestamp supaya unik (optional)
+            name: file.name,
+            size: file.size,
+            uploaded: new Date().toISOString()
           });
-          loadedCount++;
-          if (loadedCount === validFiles.length) {
-            // semua selesai
-            saveMediaItems(mediaItems);
-            renderGallery();
-            fileInput.value = ''; // reset input
-            statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> ${validFiles.length} file berhasil diunggah · sekarang publik`;
-            // scroll ke galeri
+
+          loaded++;
+          const percent = Math.round((loaded / total) * 100);
+          progressFill.style.width = percent + '%';
+          progressPercent.textContent = percent + '%';
+          progressLabel.textContent = `Mengunggah ${loaded}/${total}: ${file.name}`;
+
+          if (loaded === total) {
+            // All done
+            saveMediaItems(items);
+            renderGallery(searchInput.value);
+            fileInput.value = '';
+            uploadBtn.disabled = false;
+            progressContainer.classList.remove('active');
+            progressFill.style.width = '0%';
+            statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> ${total} file berhasil diunggah`;
+            
+            // Scroll to gallery
             document.querySelector('.gallery-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
         };
         reader.onerror = function() {
-          loadedCount++;
-          statusMsg.innerHTML = `<i class="fas fa-times-circle" style="color:#a04040;"></i> gagal membaca ${file.name}`;
+          loaded++;
+          statusMsg.innerHTML = `<i class="fas fa-times-circle" style="color:#a04040;"></i> Gagal membaca ${file.name}`;
+          if (loaded === total) {
+            uploadBtn.disabled = false;
+            progressContainer.classList.remove('active');
+          }
         };
         reader.readAsDataURL(file);
       });
     }
 
-    // ---- inisialisasi event ----
-    function init() {
-      // render awal
-      renderGallery();
+    // ---- Export/Import ----
+    function exportData() {
+      const items = loadMediaItems();
+      if (items.length === 0) {
+        statusMsg.innerHTML = '<i class="fas fa-info-circle" style="color:#777;"></i> Tidak ada data untuk di-backup';
+        return;
+      }
 
-      // event upload
-      uploadBtn.addEventListener('click', function(e) {
+      const data = {
+        version: '1.0',
+        exported: new Date().toISOString(),
+        total: items.length,
+        items: items
+      };
+
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `gallery-backup-${new Date().toISOString().slice(0,10)}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+      statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> Backup berhasil diunduh (${items.length} item)`;
+    }
+
+    function importData(file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (!data.items || !Array.isArray(data.items)) {
+            throw new Error('Format tidak valid');
+          }
+
+          const currentItems = loadMediaItems();
+          const newItems = data.items;
+          
+          if (!confirm(`Restore akan menambahkan ${newItems.length} item ke galeri. Lanjutkan?`)) return;
+
+          const combined = [...currentItems, ...newItems];
+          if (combined.length > MAX_ITEMS) {
+            if (!confirm(`Total akan menjadi ${combined.length} item (melebihi batas ${MAX_ITEMS}). Lanjutkan?`)) return;
+          }
+
+          saveMediaItems(combined);
+          renderGallery(searchInput.value);
+          statusMsg.innerHTML = `<i class="fas fa-check-circle" style="color:#8a8a8a;"></i> Restore berhasil: ${newItems.length} item ditambahkan`;
+        } catch (err) {
+          statusMsg.innerHTML = `<i class="fas fa-times-circle" style="color:#a04040;"></i> Gagal restore: ${err.message}`;
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    // ---- Drag & Drop ----
+    function setupDragAndDrop() {
+      let dragCounter = 0;
+
+      uploadSection.addEventListener('dragenter', (e) => {
         e.preventDefault();
-        handleUpload();
+        e.stopPropagation();
+        dragCounter++;
+        uploadSection.classList.add('dragover');
       });
 
-      // tombol enter di input (optional)
-      fileInput.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          handleUpload();
+      uploadSection.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        uploadSection.classList.add('dragover');
+      });
+
+      uploadSection.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter--;
+        if (dragCounter === 0) {
+          uploadSection.classList.remove('dragover');
         }
       });
 
-      // jika user memilih file, update status
+      uploadSection.addEventListener('drop', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dragCounter = 0;
+        uploadSection.classList.remove('dragover');
+        
+        const files = e.dataTransfer.files;
+        if (files && files.length > 0) {
+          fileInput.files = files;
+          statusMsg.innerHTML = `<i class="far fa-file"></i> ${files.length} file siap · klik "Unggah"`;
+        }
+      });
+    }
+
+    // ---- Init ----
+    function init() {
+      renderGallery();
+
+      // Upload
+      uploadBtn.addEventListener('click', handleUpload);
+      
       fileInput.addEventListener('change', function() {
         const count = this.files.length;
         if (count > 0) {
           statusMsg.innerHTML = `<i class="far fa-file"></i> ${count} file siap · klik "Unggah"`;
         } else {
-          statusMsg.innerHTML = '<i class="far fa-circle"></i> hanya Anda yang dapat menambahkan';
+          statusMsg.innerHTML = '<i class="far fa-circle"></i> Drag & drop file di sini, atau klik pilih file';
         }
       });
 
-      // tambahan: hapus data? tidak disediakan, sesuai konsep "hanya tambah"
-      // namun user bisa clear local storage via dev tools, tapi kita abaikan.
-      console.log('Gotchange\'s Gallery — hanya Anda yang bisa unggah, semua orang lihat.');
+      // Clear all
+      clearAllBtn.addEventListener('click', clearAllItems);
+
+      // Search
+      searchInput.addEventListener('input', function() {
+        renderGallery(this.value);
+      });
+
+      // Export
+      exportBtn.addEventListener('click', exportData);
+
+      // Import
+      importBtn.addEventListener('click', () => importFileInput.click());
+      importFileInput.addEventListener('change', function() {
+        if (this.files && this.files.length > 0) {
+          importData(this.files[0]);
+          this.value = '';
+        }
+      });
+
+      // Lightbox events
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+      lightboxNext.addEventListener('click', () => navigateLightbox(1));
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('active')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+      });
+
+      // Drag & Drop
+      setupDragAndDrop();
+
+      console.log('🎨 Gotchange\'s Gallery v2.0 — hanya Anda yang bisa unggah');
     }
 
-    // jalankan
     init();
   })();
 </script>
-
-<!-- catatan: 
-     Konsep "hanya aku yang bisa menambahkan" diimplementasikan secara fungsional,
-     karena tidak ada sistem login, tapi secara desain hanya pemilik yang punya akses ke halaman ini.
-     Setelah upload, semua orang (yang membuka halaman) langsung melihat konten terbaru karena data tersimpan di localStorage.
-     Untuk sharing antar perangkat, bisa menggunakan mekanisme backup/restore atau database, 
-     namun dalam scope HTML murni, localStorage bersifat lokal. Namun tetap memenuhi konsep "setelah upload langsung terlihat oleh orang lain" 
-     jika mereka membuka halaman yang sama di perangkat yang sama (misal satu komputer). 
-     Untuk publikasi lintas perangkat, diperlukan backend. Tapi sesuai permintaan "coding html" murni.
-  -->
 </body>
 </html>
