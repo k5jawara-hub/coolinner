@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Monochrome · Galeri</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+    <title>Gotchange's Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet" />
     <style>
-        /* ===== RESET ===== */
+        /* ============================================================
+                   RESET & BASE
+                   ============================================================ */
         * {
             margin: 0;
             padding: 0;
@@ -31,37 +33,53 @@
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjc1IiBudW1PY3RhdmVzPSI0IiAvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC4wNCIgLz48L3N2Zz4=');
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.4;
+            opacity: 0.35;
         }
 
         /* ===== SCROLLBAR ===== */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 4px;
         }
         ::-webkit-scrollbar-track {
             background: #0a0a0a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #333;
+            background: #2a2a2a;
             border-radius: 10px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #555;
+            background: #444;
         }
 
-        /* ===== NAVIGASI ===== */
+        /* ============================================================
+                   TYPOGRAPHY — ESTETIK
+                   ============================================================ */
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .serif-light {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+        }
+        .sans {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* ============================================================
+                   NAVIGASI
+                   ============================================================ */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 16px 48px;
+            padding: 18px 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 10, 10, 0.85);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(10, 10, 10, 0.82);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.035);
             z-index: 1000;
             transition: 0.3s;
             flex-wrap: wrap;
@@ -70,46 +88,49 @@
 
         nav .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #fff 50%, #888);
+            letter-spacing: -0.3px;
+            background: linear-gradient(135deg, #ffffff 35%, #888888);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        nav .logo span {
+        nav .logo .accent {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
             font-style: italic;
-            font-weight: 400;
             background: none;
             -webkit-text-fill-color: #666;
+            font-size: 20px;
         }
 
         nav ul {
             display: flex;
-            gap: 28px;
+            gap: 32px;
             list-style: none;
             flex-wrap: wrap;
         }
 
         nav ul li a {
-            color: #aaa;
+            color: #999;
             text-decoration: none;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 400;
-            letter-spacing: 0.8px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
             transition: 0.3s;
             position: relative;
+            font-family: 'Inter', sans-serif;
         }
 
         nav ul li a::after {
             content: '';
             position: absolute;
-            bottom: -6px;
+            bottom: -5px;
             left: 0;
             width: 0;
-            height: 1.5px;
+            height: 1px;
             background: #fff;
             transition: 0.4s;
         }
@@ -121,7 +142,9 @@
             width: 100%;
         }
 
-        /* ===== HERO ===== */
+        /* ============================================================
+                   HERO
+                   ============================================================ */
         .hero {
             min-height: 45vh;
             display: flex;
@@ -129,27 +152,36 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 110px 24px 20px;
+            padding: 120px 24px 30px;
             position: relative;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(34px, 8vw, 80px);
+            font-size: clamp(38px, 9vw, 90px);
             font-weight: 700;
             line-height: 1.05;
-            letter-spacing: -3px;
-            background: linear-gradient(180deg, #ffffff 20%, #777);
+            letter-spacing: -2px;
+            background: linear-gradient(180deg, #ffffff 15%, #777777);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             animation: fadeDown 1s ease-out;
         }
 
+        .hero h1 .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-style: italic;
+            background: none;
+            -webkit-text-fill-color: #555;
+        }
+
         .hero .subtitle {
-            font-size: 14px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 15px;
             font-weight: 300;
             color: #888;
-            letter-spacing: 4px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             margin-top: 10px;
             animation: fadeDown 1.2s ease-out;
@@ -158,24 +190,25 @@
         .hero .divider {
             width: 50px;
             height: 1px;
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.1);
             margin: 16px auto;
             animation: fadeDown 1.4s ease-out;
         }
 
         .hero .desc {
-            max-width: 440px;
+            max-width: 460px;
             color: #999;
             font-weight: 300;
-            line-height: 1.8;
+            line-height: 1.9;
             font-size: 14px;
+            font-family: 'Inter', sans-serif;
             animation: fadeDown 1.6s ease-out;
         }
 
         @keyframes fadeDown {
             0% {
                 opacity: 0;
-                transform: translateY(-25px);
+                transform: translateY(-20px);
             }
             100% {
                 opacity: 1;
@@ -183,10 +216,12 @@
             }
         }
 
-        /* ===== GALERI SECTION ===== */
+        /* ============================================================
+                   GALERI SECTION
+                   ============================================================ */
         .gallery-section {
-            padding: 16px 40px 60px;
-            max-width: 1400px;
+            padding: 10px 40px 60px;
+            max-width: 1440px;
             margin: 0 auto;
         }
 
@@ -195,79 +230,78 @@
             justify-content: space-between;
             align-items: flex-end;
             flex-wrap: wrap;
-            gap: 14px;
-            margin-bottom: 24px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.035);
         }
 
         .gallery-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 400;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
         }
 
-        .gallery-header h2 span {
+        .gallery-header h2 .light {
             color: #555;
             font-weight: 300;
         }
 
         .gallery-header .count {
             color: #666;
-            font-size: 12px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* ============================================================
+                   TAB UPLOAD — TANPA IKON
+                   ============================================================ */
+        .upload-tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.035);
+            padding-bottom: 8px;
+            flex-wrap: wrap;
+        }
+
+        .upload-tabs .tab-btn {
+            padding: 10px 26px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: #888;
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: 0.3s;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        /* ===== TAB UPLOAD ===== */
-        .upload-tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            padding-bottom: 12px;
-        }
-
-        .upload-tabs .tab-btn {
-            padding: 10px 28px;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 10px 10px 0 0;
-            color: #888;
-            font-family: 'Inter', sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            cursor: pointer;
-            transition: 0.3s;
-            letter-spacing: 0.5px;
-        }
-
         .upload-tabs .tab-btn:hover {
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.12);
-            background: rgba(255, 255, 255, 0.03);
+            color: #ddd;
         }
 
         .upload-tabs .tab-btn.active {
             color: #fff;
-            border-color: rgba(255, 255, 255, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-            border-bottom-color: transparent;
+            border-bottom-color: rgba(255, 255, 255, 0.25);
         }
 
-        .upload-tabs .tab-btn .icon {
-            margin-right: 6px;
-        }
-
-        /* ===== PANEL UPLOAD ===== */
+        /* ============================================================
+                   PANEL UPLOAD
+                   ============================================================ */
         .upload-panel {
             display: none;
-            padding: 20px 24px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 18px 22px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.035);
             border-radius: 12px;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
             animation: fadeIn 0.3s ease-out;
         }
 
@@ -278,7 +312,7 @@
         @keyframes fadeIn {
             0% {
                 opacity: 0;
-                transform: translateY(8px);
+                transform: translateY(6px);
             }
             100% {
                 opacity: 1;
@@ -286,22 +320,22 @@
             }
         }
 
-        /* ===== PANEL LINK ===== */
         .upload-panel .form-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
         }
 
-        .upload-panel .form-row input {
+        .upload-panel .form-row input,
+        .upload-panel .form-row select {
             flex: 1;
-            min-width: 180px;
-            padding: 11px 16px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            color: #fff;
+            min-width: 160px;
+            padding: 10px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+            color: #e0e0e0;
             font-size: 13px;
             font-family: 'Inter', sans-serif;
             transition: 0.3s;
@@ -310,141 +344,173 @@
 
         .upload-panel .form-row input::placeholder {
             color: #555;
+            font-weight: 300;
         }
 
-        .upload-panel .form-row input:focus {
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.07);
+        .upload-panel .form-row input:focus,
+        .upload-panel .form-row select:focus {
+            border-color: rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .upload-panel .form-row select option {
+            background: #1a1a1a;
+            color: #ddd;
         }
 
         .upload-panel .btn-add {
-            padding: 11px 30px;
+            padding: 10px 30px;
             background: #fff;
             color: #0a0a0a;
             border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 13px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 12px;
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
             white-space: nowrap;
         }
 
         .upload-panel .btn-add:hover {
-            background: #ddd;
+            background: #d0d0d0;
             transform: scale(1.02);
         }
 
-        /* ===== PANEL FILE MANAGER ===== */
+        .upload-panel .btn-add.outline {
+            background: transparent;
+            color: #ddd;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .upload-panel .btn-add.outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .upload-panel .helper-text {
+            margin-top: 10px;
+            font-size: 11px;
+            color: #555;
+            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
+        }
+
+        /* ============================================================
+                   PANEL FILE MANAGER — GUIDE
+                   ============================================================ */
         .filemanager-guide {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin-top: 6px;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 12px;
+            margin-top: 4px;
         }
 
         .filemanager-guide .step {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            padding: 18px 16px;
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.035);
+            border-radius: 10px;
+            padding: 16px 14px;
             text-align: center;
             transition: 0.3s;
         }
 
         .filemanager-guide .step:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(255, 255, 255, 0.08);
-        }
-
-        .filemanager-guide .step .step-icon {
-            font-size: 28px;
-            display: block;
-            margin-bottom: 8px;
-            opacity: 0.6;
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.06);
         }
 
         .filemanager-guide .step .step-num {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2px 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1px 12px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 10px;
             color: #666;
             letter-spacing: 0.5px;
-            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 6px;
         }
 
         .filemanager-guide .step h4 {
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 13px;
+            font-weight: 500;
             color: #ddd;
             margin-bottom: 4px;
-        }
-
-        .filemanager-guide .step p {
-            font-size: 12px;
-            color: #777;
-            line-height: 1.6;
-            font-weight: 300;
-        }
-
-        .filemanager-guide .step code {
-            background: rgba(255, 255, 255, 0.06);
-            padding: 2px 10px;
-            border-radius: 4px;
-            color: #aaa;
-            font-size: 11px;
-        }
-
-        .filemanager-guide .step .btn-copy {
-            margin-top: 10px;
-            padding: 6px 18px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 6px;
-            color: #888;
-            font-size: 11px;
-            cursor: pointer;
-            transition: 0.3s;
             font-family: 'Inter', sans-serif;
         }
 
+        .filemanager-guide .step p {
+            font-size: 11px;
+            color: #777;
+            line-height: 1.6;
+            font-weight: 300;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .filemanager-guide .step code {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #aaa;
+            font-size: 10px;
+            font-family: 'Inter', monospace;
+        }
+
+        .filemanager-guide .step .btn-copy {
+            margin-top: 8px;
+            padding: 5px 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            color: #888;
+            font-size: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
         .filemanager-guide .step .btn-copy:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
             color: #fff;
         }
 
         .filemanager-note {
-            margin-top: 16px;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 10px;
-            border-left: 2px solid rgba(255, 255, 255, 0.08);
-            font-size: 13px;
+            margin-top: 12px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 8px;
+            border-left: 2px solid rgba(255, 255, 255, 0.06);
+            font-size: 12px;
             color: #888;
             font-weight: 300;
             line-height: 1.7;
+            font-family: 'Inter', sans-serif;
         }
 
         .filemanager-note strong {
             color: #bbb;
+            font-weight: 400;
         }
 
-        /* ===== GRID GALERI ===== */
+        /* ============================================================
+                   GRID GALERI
+                   ============================================================ */
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 18px;
         }
 
         .gallery-item {
             position: relative;
-            border-radius: 16px;
+            border-radius: 14px;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(255, 255, 255, 0.03);
             transition: 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             cursor: pointer;
             aspect-ratio: 4/3;
@@ -452,17 +518,21 @@
 
         .gallery-item:hover {
             transform: scale(1.03);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
             z-index: 10;
         }
 
-        .gallery-item img {
+        .gallery-item img,
+        .gallery-item video {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: block;
             transition: 0.6s;
+        }
+
+        .gallery-item img {
             filter: grayscale(100%);
         }
 
@@ -471,16 +541,75 @@
             transform: scale(1.05);
         }
 
+        .gallery-item:hover video {
+            transform: scale(1.05);
+        }
+
+        /* === LABEL TANPA IKON === */
+        .gallery-item .label-type {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.55);
+            backdrop-filter: blur(4px);
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 5;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .gallery-item .label-type.photo {
+            color: #8ab;
+        }
+        .gallery-item .label-type.video {
+            color: #ba8;
+        }
+
+        .gallery-item .label-source {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 3px 14px;
+            border-radius: 20px;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 5;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+
+        .gallery-item .label-source.local {
+            color: #8ab;
+        }
+        .gallery-item .label-source.link {
+            color: #8b8;
+        }
+        .gallery-item .label-source.upload {
+            color: #ba8;
+        }
+
         .gallery-item .overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 24px 16px 12px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+            padding: 28px 16px 14px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
             opacity: 0;
             transition: 0.4s;
-            transform: translateY(20px);
+            transform: translateY(16px);
+            z-index: 5;
         }
 
         .gallery-item:hover .overlay {
@@ -489,53 +618,33 @@
         }
 
         .gallery-item .overlay h3 {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
             color: #fff;
         }
 
         .gallery-item .overlay p {
             font-size: 11px;
-            color: #aaa;
+            color: #999;
             font-weight: 300;
             margin-top: 2px;
-        }
-
-        .gallery-item .badge-source {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(4px);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 9px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #888;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .gallery-item .badge-source.local {
-            color: #8af;
-        }
-
-        .gallery-item .badge-source.link {
-            color: #8f8;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.3px;
         }
 
         .gallery-item .delete-btn {
             position: absolute;
             top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            right: 60px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.04);
             color: #888;
             border-radius: 50%;
-            width: 28px;
-            height: 28px;
-            font-size: 14px;
+            width: 26px;
+            height: 26px;
+            font-size: 12px;
             cursor: pointer;
             transition: 0.3s;
             display: none;
@@ -543,6 +652,8 @@
             justify-content: center;
             font-family: 'Inter', sans-serif;
             backdrop-filter: blur(4px);
+            z-index: 6;
+            font-weight: 300;
         }
 
         .gallery-item:hover .delete-btn {
@@ -550,12 +661,14 @@
         }
 
         .gallery-item .delete-btn:hover {
-            background: rgba(255, 50, 50, 0.3);
-            color: #ff6666;
-            border-color: rgba(255, 50, 50, 0.3);
+            background: rgba(255, 50, 50, 0.2);
+            color: #f77;
+            border-color: rgba(255, 50, 50, 0.1);
         }
 
-        /* ===== LIGHTBOX ===== */
+        /* ============================================================
+                   LIGHTBOX / MODAL
+                   ============================================================ */
         .lightbox {
             display: none;
             position: fixed;
@@ -563,8 +676,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(0, 0, 0, 0.92);
-            backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.93);
+            backdrop-filter: blur(24px);
             z-index: 99999;
             align-items: center;
             justify-content: center;
@@ -576,18 +689,24 @@
             display: flex;
         }
 
-        .lightbox img {
+        .lightbox img,
+        .lightbox video {
             max-width: 90vw;
             max-height: 85vh;
             object-fit: contain;
-            border-radius: 12px;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
             animation: zoomIn 0.4s ease-out;
+        }
+
+        .lightbox video {
+            width: 90vw;
+            max-height: 85vh;
         }
 
         @keyframes zoomIn {
             0% {
-                transform: scale(0.9);
+                transform: scale(0.92);
                 opacity: 0;
             }
             100% {
@@ -600,17 +719,17 @@
             position: absolute;
             top: 30px;
             right: 40px;
-            color: #fff;
-            font-size: 34px;
+            color: #888;
+            font-size: 28px;
             cursor: pointer;
             transition: 0.3s;
-            opacity: 0.5;
             font-weight: 300;
             font-family: 'Inter', sans-serif;
+            letter-spacing: 1px;
         }
 
         .lightbox .close:hover {
-            opacity: 1;
+            color: #fff;
             transform: rotate(90deg);
         }
 
@@ -619,30 +738,36 @@
             bottom: 40px;
             left: 50%;
             transform: translateX(-50%);
-            color: #888;
+            color: #777;
             font-size: 13px;
             font-weight: 300;
             letter-spacing: 1px;
             text-align: center;
+            font-family: 'Inter', sans-serif;
         }
 
-        /* ===== EMPTY STATE ===== */
+        /* ============================================================
+                   EMPTY STATE
+                   ============================================================ */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
             grid-column: 1/-1;
         }
 
-        .empty-state .icon {
+        .empty-state .icon-text {
+            font-family: 'Cormorant Garamond', serif;
             font-size: 48px;
-            opacity: 0.25;
+            font-weight: 300;
+            color: #444;
             display: block;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .empty-state h3 {
+            font-family: 'Playfair Display', serif;
             font-weight: 400;
-            font-size: 18px;
+            font-size: 20px;
             color: #888;
         }
 
@@ -650,17 +775,22 @@
             font-size: 13px;
             margin-top: 6px;
             color: #444;
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
         }
 
-        /* ===== FOOTER ===== */
+        /* ============================================================
+                   FOOTER
+                   ============================================================ */
         footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            border-top: 1px solid rgba(255, 255, 255, 0.025);
             padding: 28px 40px 22px;
             text-align: center;
             color: #444;
             font-weight: 300;
-            font-size: 12px;
-            letter-spacing: 1px;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            font-family: 'Inter', sans-serif;
         }
 
         footer a {
@@ -669,27 +799,31 @@
             transition: 0.3s;
         }
         footer a:hover {
-            color: #fff;
+            color: #aaa;
         }
 
-        /* ===== TOAST ===== */
+        /* ============================================================
+                   TOAST NOTIFICATION
+                   ============================================================ */
         .toast {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(80px);
-            background: rgba(20, 20, 20, 0.9);
+            background: rgba(16, 16, 16, 0.92);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            padding: 12px 28px;
-            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            padding: 12px 30px;
+            border-radius: 10px;
             color: #ccc;
             font-size: 13px;
             font-weight: 300;
+            font-family: 'Inter', sans-serif;
             z-index: 9999;
             opacity: 0;
             transition: 0.4s ease;
             pointer-events: none;
+            letter-spacing: 0.3px;
         }
 
         .toast.show {
@@ -698,21 +832,18 @@
         }
 
         .toast.success {
-            border-color: rgba(100, 255, 100, 0.15);
-            color: #8f8;
+            border-color: rgba(100, 200, 100, 0.1);
+            color: #8a8;
         }
 
         .toast.error {
-            border-color: rgba(255, 100, 100, 0.15);
-            color: #f88;
+            border-color: rgba(200, 100, 100, 0.1);
+            color: #a88;
         }
 
-        .toast.info {
-            border-color: rgba(100, 150, 255, 0.15);
-            color: #8af;
-        }
-
-        /* ===== RESPONSIVE ===== */
+        /* ============================================================
+                   RESPONSIVE
+                   ============================================================ */
         @media (max-width: 768px) {
             nav {
                 padding: 12px 16px;
@@ -720,56 +851,59 @@
                 gap: 6px;
             }
             nav ul {
-                gap: 14px;
+                gap: 16px;
                 justify-content: center;
             }
             nav ul li a {
                 font-size: 10px;
-                letter-spacing: 0.5px;
+                letter-spacing: 1px;
             }
             .hero {
                 min-height: 30vh;
                 padding: 110px 16px 16px;
             }
             .hero h1 {
-                font-size: 32px;
+                font-size: 34px;
             }
             .gallery-section {
-                padding: 12px 12px 40px;
+                padding: 10px 12px 40px;
             }
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
                 gap: 12px;
             }
             .gallery-header h2 {
                 font-size: 20px;
             }
             .upload-tabs {
-                gap: 4px;
-                padding-bottom: 8px;
+                gap: 2px;
+                padding-bottom: 6px;
                 overflow-x: auto;
+                flex-wrap: nowrap;
             }
             .upload-tabs .tab-btn {
                 padding: 8px 16px;
-                font-size: 11px;
+                font-size: 10px;
                 white-space: nowrap;
             }
             .upload-panel {
-                padding: 14px 16px;
+                padding: 12px 14px;
             }
             .upload-panel .form-row {
                 flex-direction: column;
             }
-            .upload-panel .form-row input {
+            .upload-panel .form-row input,
+            .upload-panel .form-row select {
                 min-width: 100%;
                 width: 100%;
             }
             .upload-panel .btn-add {
                 width: 100%;
                 justify-content: center;
+                text-align: center;
             }
             .filemanager-guide {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
             .lightbox {
                 padding: 14px;
@@ -777,161 +911,199 @@
             .lightbox .close {
                 top: 14px;
                 right: 16px;
-                font-size: 26px;
+                font-size: 22px;
+            }
+            .lightbox video {
+                width: 95vw;
             }
         }
 
         @media (max-width: 480px) {
             .gallery-grid {
-                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 gap: 10px;
             }
             .gallery-item .overlay h3 {
-                font-size: 12px;
+                font-size: 13px;
             }
             .gallery-item .overlay p {
                 font-size: 10px;
+            }
+            .filemanager-guide {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- ===== NAVIGASI ===== -->
+    <!-- ============================================================
+    NAVIGASI
+    ============================================================ -->
     <nav>
-        <div class="logo">✦ monochrome <span>· gallery</span></div>
+        <div class="logo">gotchange<span class="accent">'s gallery</span></div>
         <ul>
-            <li><a href="#gallery">Galeri</a></li>
-            <li><a href="#about">Tentang</a></li>
+            <li><a href="#gallery">galeri</a></li>
+            <li><a href="#about">tentang</a></li>
         </ul>
     </nav>
 
-    <!-- ===== HERO ===== -->
+    <!-- ============================================================
+    HERO
+    ============================================================ -->
     <section class="hero">
-        <h1>Dalam Hitam &amp; Putih</h1>
-        <div class="subtitle">Sebuah perjalanan visual</div>
+        <h1>gotchange<span class="ampersand">'s</span> gallery</h1>
+        <div class="subtitle">sebuah perjalanan visual</div>
         <div class="divider"></div>
         <p class="desc">
-            Kumpulan momen yang tertangkap dalam skala abu-abu.
-            Tambahkan foto dari link atau via File Manager.
+            Koleksi foto &amp; video dalam harmoni hitam-putih.
+            Tambahkan karya dari mana saja.
         </p>
     </section>
 
-    <!-- ===== GALERI ===== -->
+    <!-- ============================================================
+    GALERI
+    ============================================================ -->
     <section class="gallery-section" id="gallery">
         <div class="gallery-header">
-            <h2>Galeri <span>·</span></h2>
-            <span class="count" id="photoCount">0 foto</span>
+            <h2>galeri <span class="light">·</span></h2>
+            <span class="count" id="photoCount">0 item</span>
         </div>
 
         <!-- ===== TAB UPLOAD ===== -->
         <div class="upload-tabs">
-            <button class="tab-btn active" data-tab="link">
-                <span class="icon">🔗</span> Via Link
-            </button>
-            <button class="tab-btn" data-tab="filemanager">
-                <span class="icon">📁</span> Via File Manager
-            </button>
+            <button class="tab-btn active" data-tab="link">via link</button>
+            <button class="tab-btn" data-tab="upload">upload langsung</button>
+            <button class="tab-btn" data-tab="filemanager">file manager</button>
         </div>
 
         <!-- ===== PANEL LINK ===== -->
         <div class="upload-panel active" id="panel-link">
             <div class="form-row">
-                <input type="url" id="photoUrlInput" placeholder="https://i.ibb.co/xxx/foto.jpg" />
-                <input type="text" id="photoTitleInput" placeholder="Judul foto (opsional)" />
-                <button class="btn-add" id="addPhotoBtn">+ Tambah</button>
+                <input type="url" id="mediaUrlInput" placeholder="https://example.com/foto.jpg atau video.mp4" />
+                <input type="text" id="mediaTitleInput" placeholder="judul (opsional)" />
+                <select id="mediaTypeSelect">
+                    <option value="auto">deteksi otomatis</option>
+                    <option value="photo">foto</option>
+                    <option value="video">video</option>
+                </select>
+                <button class="btn-add" id="addLinkBtn">tambah</button>
             </div>
+        </div>
+
+        <!-- ===== PANEL UPLOAD LANGSUNG ===== -->
+        <div class="upload-panel" id="panel-upload">
+            <div class="form-row">
+                <input type="file" id="fileInput" accept="image/*,video/*" style="color:#888; padding:10px;" />
+                <input type="text" id="uploadTitleInput" placeholder="judul (opsional)" />
+                <button class="btn-add" id="uploadFileBtn">upload</button>
+            </div>
+            <div class="helper-text">file akan tersimpan di browser anda. maksimal 10mb per file.</div>
         </div>
 
         <!-- ===== PANEL FILE MANAGER ===== -->
         <div class="upload-panel" id="panel-filemanager">
             <div class="filemanager-guide">
                 <div class="step">
-                    <span class="step-icon">📂</span>
-                    <span class="step-num">LANGKAH 1</span>
-                    <h4>Buka File Manager</h4>
-                    <p>Masuk ke Control Panel InfinityFree, lalu buka <strong>File Manager</strong>.</p>
+                    <span class="step-num">langkah 1</span>
+                    <h4>buka file manager</h4>
+                    <p>masuk ke control panel infinityfree, buka <strong>file manager</strong>.</p>
                 </div>
                 <div class="step">
-                    <span class="step-icon">📁</span>
-                    <span class="step-num">LANGKAH 2</span>
-                    <h4>Buat Folder <code>images</code></h4>
-                    <p>Di dalam folder <code>htdocs</code>, buat folder baru bernama <code>images</code>.</p>
+                    <span class="step-num">langkah 2</span>
+                    <h4>buat folder <code>media</code></h4>
+                    <p>di <code>htdocs</code>, buat folder bernama <code>media</code>.</p>
                 </div>
                 <div class="step">
-                    <span class="step-icon">⬆️</span>
-                    <span class="step-num">LANGKAH 3</span>
-                    <h4>Upload Foto</h4>
-                    <p>Masuk ke folder <code>images</code>, lalu upload semua foto kamu.</p>
+                    <span class="step-num">langkah 3</span>
+                    <h4>upload file</h4>
+                    <p>masuk ke folder <code>media</code>, upload semua file.</p>
                 </div>
                 <div class="step">
-                    <span class="step-icon">✏️</span>
-                    <span class="step-num">LANGKAH 4</span>
-                    <h4>Daftarkan Nama File</h4>
-                    <p>Buka file <code>index.html</code>, cari <code>localImages</code>, tambahkan nama file.</p>
-                    <button class="btn-copy" id="copyCodeBtn">📋 Salin Contoh</button>
+                    <span class="step-num">langkah 4</span>
+                    <h4>daftarkan file</h4>
+                    <p>buka <code>index.html</code>, cari <code>localMedia</code>, tambahkan nama file.</p>
+                    <button class="btn-copy" id="copyCodeBtn">salin contoh</button>
                 </div>
             </div>
             <div class="filemanager-note">
-                <strong>💡 Tips:</strong> Nama file harus <strong>sama persis</strong> dengan yang diupload.
-                Gunakan huruf kecil dan tanpa spasi. Contoh: <code>foto1.jpg</code>, <code>liburan.png</code>
+                <strong>tips:</strong> nama file harus <strong>sama persis</strong> dengan yang diupload.
+                gunakan huruf kecil, tanpa spasi. contoh: <code>foto1.jpg</code>, <code>video1.mp4</code>
             </div>
         </div>
 
+        <!-- ===== GRID ===== -->
         <div class="gallery-grid" id="galleryGrid">
-            <!-- Foto akan di-render oleh JavaScript -->
+            <!-- Di-render oleh JavaScript -->
         </div>
     </section>
 
-    <!-- ===== ABOUT ===== -->
+    <!-- ============================================================
+    TENTANG
+    ============================================================ -->
     <section id="about" style="padding:16px 40px 50px; max-width:800px; margin:0 auto; text-align:center;">
-        <div style="border-top:1px solid rgba(255,255,255,0.04); padding-top:30px;">
-            <p style="color:#666; font-size:13px; line-height:2; font-weight:300; letter-spacing:0.3px;">
-                Galeri ini adalah ruang untuk mengapresiasi keindahan dalam kesederhanaan.
+        <div style="border-top:1px solid rgba(255,255,255,0.025); padding-top:30px;">
+            <p style="color:#666; font-size:13px; line-height:2.2; font-weight:300; letter-spacing:0.3px; font-family:'Inter',sans-serif;">
+                <span style="color:#888; font-family:'Playfair Display',serif;">gotchange's gallery</span>
+                adalah ruang untuk mengapresiasi keindahan dalam kesederhanaan.
                 <br />
-                Foto dari File Manager &amp; link dari internet.
+                foto &amp; video dari berbagai sumber dalam satu galeri monokrom.
             </p>
-            <p style="color:#444; font-size:11px; margin-top:12px; letter-spacing:1px; text-transform:uppercase;">
-                ✦ tanpa database · foto tersimpan di browser ✦
+            <p style="color:#444; font-size:10px; margin-top:14px; letter-spacing:2px; text-transform:uppercase; font-weight:300;">
+                tanpa database · media tersimpan di browser
             </p>
         </div>
     </section>
 
-    <!-- ===== FOOTER ===== -->
+    <!-- ============================================================
+    FOOTER
+    ============================================================ -->
     <footer>
-        © 2026 · galeri monokrom &mdash; dibuat dengan <a href="#">ketenangan</a>
+        two thousand twenty six · gotchange's gallery &mdash; dibuat dengan <a href="#">ketenangan</a>
     </footer>
 
-    <!-- ===== LIGHTBOX ===== -->
+    <!-- ============================================================
+    LIGHTBOX
+    ============================================================ -->
     <div class="lightbox" id="lightbox">
-        <span class="close" id="lightboxClose">✕</span>
-        <img id="lightboxImg" src="" alt="full" />
+        <span class="close" id="lightboxClose">close</span>
+        <div id="lightboxContent" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;"></div>
         <div class="info" id="lightboxInfo"></div>
     </div>
 
-    <!-- ===== TOAST ===== -->
+    <!-- ============================================================
+    TOAST
+    ============================================================ -->
     <div class="toast" id="toast"></div>
 
-    <!-- ============================================================ -->
-    <!-- ===== JAVASCRIPT ===== -->
-    <!-- ============================================================ -->
+    <!-- ============================================================
+    JAVASCRIPT
+    ============================================================ -->
     <script>
         // ================================================================
-        //  ✦ DATA FOTO — Gabungan dari File Manager + Link ✦
+        //  DATA MEDIA — Gabungan dari File Manager + Link + Upload
+        //  SEMUA ORANG BISA MELIHAT FILE DARI FILE MANAGER
         // ================================================================
 
-        // --- FOTO DARI FILE MANAGER (folder /images/) ---
-        const localImages = [
-            // ✦ Tulis nama file foto di sini ✦
-            // Contoh: 'foto1.jpg', 'foto2.png', 'foto3.webp'
+        // --- MEDIA DARI FILE MANAGER (folder /media/) ---
+        // TAMBAHKAN NAMA FILE DI SINI, SEMUA ORANG BISA MELIHATNYA
+        const localMedia = [
+            // foto
             'foto1.jpg',
             'foto2.jpg',
             'foto3.jpg',
             'foto4.jpg',
+            // video
+            // 'video1.mp4',
+            // 'clip.webm',
         ];
 
         // --- KEY UNTUK LOCALSTORAGE ---
-        const STORAGE_KEY = 'monochrome_gallery_links';
+        const STORAGE_KEY = 'gotchange_gallery_items';
+        const UPLOAD_STORAGE_KEY = 'gotchange_uploaded_items';
 
         // ================================================================
         //  FUNGSI UTILITY
@@ -944,7 +1116,16 @@
                 .replace(/\b\w/g, l => l.toUpperCase());
         }
 
-        function getLinkPhotos() {
+        function detectMediaType(url) {
+            const ext = url.split('.').pop().toLowerCase();
+            const videoExts = ['mp4', 'webm', 'ogg', 'mov', 'avi', 'mkv', 'm4v', '3gp'];
+            const imageExts = ['jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp', 'svg', 'ico'];
+            if (videoExts.includes(ext)) return 'video';
+            if (imageExts.includes(ext)) return 'photo';
+            return 'photo';
+        }
+
+        function getStoredItems() {
             try {
                 const data = localStorage.getItem(STORAGE_KEY);
                 return data ? JSON.parse(data) : [];
@@ -953,24 +1134,49 @@
             }
         }
 
-        function saveLinkPhotos(photos) {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(photos));
+        function saveStoredItems(items) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
         }
 
-        function getAllPhotos() {
-            const local = localImages.map(filename => ({
-                id: 'local_' + filename,
-                title: formatTitle(filename),
-                url: 'images/' + filename,
-                source: 'local'
-            }));
+        function getUploadedItems() {
+            try {
+                const data = localStorage.getItem(UPLOAD_STORAGE_KEY);
+                return data ? JSON.parse(data) : [];
+            } catch {
+                return [];
+            }
+        }
 
-            const links = getLinkPhotos().map(p => ({
-                ...p,
+        function saveUploadedItems(items) {
+            localStorage.setItem(UPLOAD_STORAGE_KEY, JSON.stringify(items));
+        }
+
+        function getAllMedia() {
+            // Dari File Manager — SEMUA ORANG LIHAT
+            const local = localMedia.map(filename => {
+                const type = detectMediaType(filename);
+                return {
+                    id: 'local_' + filename,
+                    title: formatTitle(filename),
+                    url: 'media/' + filename,
+                    source: 'local',
+                    type: type
+                };
+            });
+
+            // Dari link — hanya user yang menambah
+            const links = getStoredItems().map(item => ({
+                ...item,
                 source: 'link'
             }));
 
-            return [...local, ...links];
+            // Dari upload langsung — hanya user yang upload
+            const uploads = getUploadedItems().map(item => ({
+                ...item,
+                source: 'upload'
+            }));
+
+            return [...local, ...links, ...uploads];
         }
 
         // ================================================================
@@ -995,56 +1201,70 @@
         }
 
         function renderGallery() {
-            const photos = getAllPhotos();
+            const items = getAllMedia();
 
-            if (photos.length === 0) {
+            if (items.length === 0) {
                 grid.innerHTML = `
-                        <div class="empty-state">
-                            <span class="icon">◌</span>
-                            <h3>Belum ada foto</h3>
-                            <p>Upload ke folder /images/ atau tambah via link di atas.</p>
-                        </div>
-                    `;
-                countEl.textContent = '0 foto';
+                            <div class="empty-state">
+                                <span class="icon-text">·</span>
+                                <h3>belum ada media</h3>
+                                <p>upload ke folder /media/, tambah via link, atau upload langsung.</p>
+                            </div>
+                        `;
+                countEl.textContent = '0 item';
                 return;
             }
 
-            grid.innerHTML = photos.map((photo, index) => {
-                const isLocal = photo.source === 'local';
-                const badgeClass = isLocal ? 'local' : 'link';
-                const badgeLabel = isLocal ? '📁 Server' : '🔗 Link';
+            grid.innerHTML = items.map((item, index) => {
+                const isLocal = item.source === 'local';
+                const isLink = item.source === 'link';
+                const isUpload = item.source === 'upload';
+                const isVideo = item.type === 'video';
+
+                const sourceLabel = isLocal ? 'server' : isLink ? 'link' : 'upload';
+                const sourceClass = isLocal ? 'local' : isLink ? 'link' : 'upload';
+                const mediaTypeLabel = isVideo ? 'video' : 'foto';
+                const mediaTypeClass = isVideo ? 'video' : 'photo';
+
+                const mediaTag = isVideo ?
+                    `<video src="${item.url}" muted preload="metadata"></video>` :
+                    `<img src="${item.url}" alt="${item.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%231a1a1a%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23555%22 font-family=%22sans-serif%22 font-size=%2214%22%3Emedia tidak ditemukan%3C/text%3E%3C/svg%3E'" />`;
+
+                const showDelete = !isLocal;
 
                 return `
-                        <div class="gallery-item" data-index="${index}" data-id="${photo.id}">
-                            <img src="${photo.url}" alt="${photo.title}" loading="lazy" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22300%22 height=%22300%22%3E%3Crect fill=%22%231a1a1a%22 width=%22300%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23555%22 font-family=%22sans-serif%22 font-size=%2214%22%3Efoto tidak ditemukan%3C/text%3E%3C/svg%3E'" />
-                            <span class="badge-source ${badgeClass}">${badgeLabel}</span>
-                            <div class="overlay">
-                                <h3>${photo.title}</h3>
-                                <p>${isLocal ? '✦ dari server' : '✦ dari link'}</p>
+                            <div class="gallery-item" data-index="${index}" data-id="${item.id}" data-type="${item.type}" data-url="${item.url}">
+                                ${mediaTag}
+                                <span class="label-type ${mediaTypeClass}">${mediaTypeLabel}</span>
+                                <span class="label-source ${sourceClass}">${sourceLabel}</span>
+                                <div class="overlay">
+                                    <h3>${item.title}</h3>
+                                    <p>${isLocal ? 'dari server' : isLink ? 'dari link' : 'diupload'}</p>
+                                </div>
+                                ${showDelete ? `<button class="delete-btn" data-id="${item.id}">×</button>` : ''}
                             </div>
-                            ${!isLocal ? `<button class="delete-btn" data-id="${photo.id}" title="Hapus foto">✕</button>` : ''}
-                        </div>
-                    `;
+                        `;
             }).join('');
 
-            countEl.textContent = `${photos.length} foto`;
+            countEl.textContent = `${items.length} item`;
 
-            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            // Event klik untuk lightbox
+            document.querySelectorAll('.gallery-item').forEach((item) => {
                 item.addEventListener('click', (e) => {
                     if (e.target.closest('.delete-btn')) return;
-                    const photos = getAllPhotos();
-                    const photo = photos[index];
-                    if (photo) {
-                        openLightbox(photo.url, photo.title);
-                    }
+                    const url = item.dataset.url;
+                    const type = item.dataset.type;
+                    const title = item.querySelector('.overlay h3')?.textContent || 'Media';
+                    openLightbox(url, type, title);
                 });
             });
 
+            // Event untuk tombol delete
             document.querySelectorAll('.delete-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const id = btn.dataset.id;
-                    deleteLinkPhoto(id);
+                    deleteMediaItem(id);
                 });
             });
         }
@@ -1056,6 +1276,7 @@
         const tabBtns = document.querySelectorAll('.tab-btn');
         const panels = {
             link: document.getElementById('panel-link'),
+            upload: document.getElementById('panel-upload'),
             filemanager: document.getElementById('panel-filemanager')
         };
 
@@ -1063,7 +1284,6 @@
             btn.addEventListener('click', () => {
                 tabBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
-
                 const tab = btn.dataset.tab;
                 Object.keys(panels).forEach(key => {
                     panels[key].classList.toggle('active', key === tab);
@@ -1072,19 +1292,21 @@
         });
 
         // ================================================================
-        //  TAMBAH FOTO VIA LINK
+        //  TAMBAH VIA LINK
         // ================================================================
 
-        const urlInput = document.getElementById('photoUrlInput');
-        const titleInput = document.getElementById('photoTitleInput');
-        const addBtn = document.getElementById('addPhotoBtn');
+        const urlInput = document.getElementById('mediaUrlInput');
+        const titleLinkInput = document.getElementById('mediaTitleInput');
+        const typeSelect = document.getElementById('mediaTypeSelect');
+        const addLinkBtn = document.getElementById('addLinkBtn');
 
-        function addPhotoFromLink() {
+        function addMediaFromLink() {
             let url = urlInput.value.trim();
-            let title = titleInput.value.trim();
+            let title = titleLinkInput.value.trim();
+            let type = typeSelect.value;
 
             if (!url) {
-                showToast('✗ Masukkan URL gambar terlebih dahulu!', 'error');
+                showToast('masukkan url terlebih dahulu', 'error');
                 return;
             }
 
@@ -1092,61 +1314,130 @@
                 url = 'https://' + url;
             }
 
-            if (!title) {
-                title = 'Foto dari link';
+            if (type === 'auto') {
+                type = detectMediaType(url);
             }
 
-            const existing = getLinkPhotos();
+            if (!title) {
+                title = type === 'video' ? 'Video dari link' : 'Foto dari link';
+            }
+
+            const existing = getStoredItems();
             if (existing.some(p => p.url === url)) {
-                showToast('✗ Foto ini sudah ada di galeri!', 'error');
+                showToast('media ini sudah ada', 'error');
                 return;
             }
 
-            const newPhoto = {
+            const newItem = {
                 id: 'link_' + Date.now(),
                 title: title,
                 url: url,
+                type: type,
                 addedAt: new Date().toISOString()
             };
 
-            existing.push(newPhoto);
-            saveLinkPhotos(existing);
+            existing.push(newItem);
+            saveStoredItems(existing);
 
             urlInput.value = '';
-            titleInput.value = '';
+            titleLinkInput.value = '';
 
             renderGallery();
-            showToast('✓ Foto berhasil ditambahkan!', 'success');
+            showToast('media berhasil ditambahkan', 'success');
         }
 
-        addBtn.addEventListener('click', addPhotoFromLink);
+        addLinkBtn.addEventListener('click', addMediaFromLink);
+        urlInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
+                addMediaFromLink(); } });
+        titleLinkInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault();
+                addMediaFromLink(); } });
 
-        urlInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addPhotoFromLink();
+        // ================================================================
+        //  UPLOAD LANGSUNG
+        // ================================================================
+
+        const fileInput = document.getElementById('fileInput');
+        const uploadTitleInput = document.getElementById('uploadTitleInput');
+        const uploadFileBtn = document.getElementById('uploadFileBtn');
+
+        function uploadFile() {
+            const file = fileInput.files[0];
+            if (!file) {
+                showToast('pilih file terlebih dahulu', 'error');
+                return;
             }
-        });
 
-        titleInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                addPhotoFromLink();
+            if (file.size > 10 * 1024 * 1024) {
+                showToast('ukuran file terlalu besar (maks 10mb)', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const dataUrl = e.target.result;
+                const type = file.type.startsWith('video') ? 'video' : 'photo';
+                const title = uploadTitleInput.value.trim() || formatTitle(file.name);
+
+                const uploaded = getUploadedItems();
+                const newItem = {
+                    id: 'upload_' + Date.now(),
+                    title: title,
+                    url: dataUrl,
+                    type: type,
+                    fileName: file.name,
+                    addedAt: new Date().toISOString()
+                };
+
+                uploaded.push(newItem);
+                saveUploadedItems(uploaded);
+
+                fileInput.value = '';
+                uploadTitleInput.value = '';
+
+                renderGallery();
+                showToast('file berhasil diupload', 'success');
+            };
+
+            reader.onerror = function() {
+                showToast('gagal membaca file', 'error');
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        uploadFileBtn.addEventListener('click', uploadFile);
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files[0]) {
+                uploadFile();
             }
         });
 
         // ================================================================
-        //  HAPUS FOTO DARI LINK
+        //  HAPUS MEDIA
         // ================================================================
 
-        function deleteLinkPhoto(id) {
-            let photos = getLinkPhotos();
-            const filtered = photos.filter(p => p.id !== id);
-            if (filtered.length === photos.length) return;
+        function deleteMediaItem(id) {
+            // Cek di link items
+            let links = getStoredItems();
+            const filteredLinks = links.filter(p => p.id !== id);
+            if (filteredLinks.length !== links.length) {
+                saveStoredItems(filteredLinks);
+                renderGallery();
+                showToast('media dihapus', 'success');
+                return;
+            }
 
-            saveLinkPhotos(filtered);
-            renderGallery();
-            showToast('✓ Foto dihapus', 'success');
+            // Cek di upload items
+            let uploads = getUploadedItems();
+            const filteredUploads = uploads.filter(p => p.id !== id);
+            if (filteredUploads.length !== uploads.length) {
+                saveUploadedItems(filteredUploads);
+                renderGallery();
+                showToast('media dihapus', 'success');
+                return;
+            }
+
+            showToast('media tidak ditemukan', 'error');
         }
 
         // ================================================================
@@ -1154,24 +1445,23 @@
         // ================================================================
 
         document.getElementById('copyCodeBtn').addEventListener('click', () => {
-            const example = `const localImages = [
+            const example = `const localMedia = [
     'foto1.jpg',
     'foto2.jpg',
-    'foto3.jpg',
-    // Tambahkan nama file di sini
+    'video1.mp4',
+    // tambahkan nama file di sini
 ];`;
 
             navigator.clipboard.writeText(example).then(() => {
-                showToast('✓ Contoh kode disalin!', 'success');
+                showToast('contoh kode disalin', 'success');
             }).catch(() => {
-                // Fallback
                 const textarea = document.createElement('textarea');
                 textarea.value = example;
                 document.body.appendChild(textarea);
                 textarea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textarea);
-                showToast('✓ Contoh kode disalin!', 'success');
+                showToast('contoh kode disalin', 'success');
             });
         });
 
@@ -1180,12 +1470,30 @@
         // ================================================================
 
         const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxContent = document.getElementById('lightboxContent');
         const lightboxInfo = document.getElementById('lightboxInfo');
         const closeBtn = document.getElementById('lightboxClose');
 
-        function openLightbox(url, title) {
-            lightboxImg.src = url;
+        function openLightbox(url, type, title) {
+            lightboxContent.innerHTML = '';
+            if (type === 'video') {
+                const video = document.createElement('video');
+                video.src = url;
+                video.controls = true;
+                video.autoplay = true;
+                video.style.maxWidth = '90vw';
+                video.style.maxHeight = '85vh';
+                video.style.borderRadius = '10px';
+                lightboxContent.appendChild(video);
+            } else {
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = title;
+                img.style.maxWidth = '90vw';
+                img.style.maxHeight = '85vh';
+                img.style.borderRadius = '10px';
+                lightboxContent.appendChild(img);
+            }
             lightboxInfo.textContent = `${title} · klik di luar untuk tutup`;
             lightbox.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -1194,6 +1502,9 @@
         function closeLightbox() {
             lightbox.classList.remove('active');
             document.body.style.overflow = '';
+            const video = lightboxContent.querySelector('video');
+            if (video) video.pause();
+            lightboxContent.innerHTML = '';
         }
 
         closeBtn.addEventListener('click', closeLightbox);
